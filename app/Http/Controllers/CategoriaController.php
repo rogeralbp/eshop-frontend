@@ -31,8 +31,12 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        $categories = Categoria::orderBy('id', 'ASC')->get();
+        //$categories = Categoria::orderBy('id', 'ASC')->get();
+        $url = 'http://127.0.0.1:2000/api/categories';
+        $response = file_get_contents($url);
+        $categories = json_decode($response);
         return view('categories.create')->with('categories',$categories);
+        
     }
 
     /**
@@ -43,6 +47,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+        
         $categoria = new Categoria;
         $categoria->nombre = Input::get('nombre');
         $categoria->categoria_padre = Input::get('categoriaPadre');
@@ -77,7 +82,7 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        $categoria = Categoria::find($id);
+         
         //$categories = Categoria::orderBy('id', 'ASC')->get();
         return view('categories.edit')->with('categoria', $categoria);
     }
