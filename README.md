@@ -1,3 +1,3 @@
 # frontend-eshop
 
-Frontend of the project eshop
+frontend project of a E-Shop developed in Laravel
